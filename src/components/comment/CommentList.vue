@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Comment's List</h1>
+        <h1 class="text-primary title">Comment's List</h1>
     </div>
 </template>
 
