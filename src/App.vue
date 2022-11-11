@@ -9,6 +9,8 @@ import CommentList from './components/comment/CommentList.vue';
 </script>
 
 <style lang="scss">
+@import '/src/assets/styles/reset.css';
+
 .title {
   font-size: 4rem;
   font-weight: 400;

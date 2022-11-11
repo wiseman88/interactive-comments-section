@@ -1,11 +1,9 @@
 <template>
-    <div>
-        <h1 class="text-primary title">Comment's List</h1>
-    </div>
+    <Comment />
 </template>
 
 <script setup>
-
+import Comment from './Comment.vue';
 </script>
 
 <style lang="scss" scoped>
