@@ -2,18 +2,17 @@
     <div class="comment-content">
         <div class="comment-header">
             <figure class="avatar">
-                <img src="/assets/images/avatars/image-amyrobson.png" alt="amy robson">
+                <img :src="comment.user.image.png" :alt="comment.user.username">
             </figure>
             <span class="name">
-                Amy robson
+                {{ comment.user.username }}
             </span>
             <span class="date">
-                1 month ago
+                {{ comment.createdAt }}
             </span>
         </div>
         <p class="comment-body text-primary-moderate">
-            Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've
-            nailed the design and the responsiveness at various breakpoints works really well.
+            {{ comment.content }}
         </p>
         <div class="comment-footer">
             <div class="vote">
@@ -25,7 +24,7 @@
                     </svg>
                 </button>
                 <span class="vote-total">
-                    12
+                    {{ comment.score }}
                 </span>
                 <button>
                     <svg width="11" height="3" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +51,9 @@
 </template>
 
 <script setup>
-
+defineProps({
+    comment: Object
+})
 </script>
 
 <style lang="scss" scoped>
