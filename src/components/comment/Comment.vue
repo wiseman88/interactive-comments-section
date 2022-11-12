@@ -11,7 +11,7 @@
                 {{ comment.createdAt }}
             </span>
         </div>
-        <p class="comment-body text-primary-moderate">
+        <p class="comment-body">
             {{ comment.content }}
         </p>
         <div class="comment-footer">
