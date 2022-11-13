@@ -18,6 +18,6 @@ import CommentList from './components/comment/CommentList.vue';
 }
 
 .comments-wrapper {
-  padding: 31px 15px;
+  padding: 31px 16px;
 }
 </style>
