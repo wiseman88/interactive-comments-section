@@ -7,6 +7,9 @@
             <span class="name">
                 {{ comment.user.username }}
             </span>
+            <span class="current-user" v-if="data.currentUser.username === comment.user.username">
+                you
+            </span>
             <span class="date">
                 {{ comment.createdAt }}
             </span>
@@ -52,9 +55,13 @@
 </template>
 
 <script setup>
+import { useCommentStore } from '../../stores/comment';
+
 defineProps({
     comment: Object
 })
+
+const data = useCommentStore();
 </script>
 
 <style lang="scss" scoped>
@@ -81,13 +88,23 @@ defineProps({
     }
 
     .name {
-        margin-right: 1rem;
         font-weight: 500;
     }
 
     .date {
+        margin-left: 1rem;
         text-transform: lowercase;
         color: $primary-moderate;
+    }
+
+    .current-user {
+        background-color: $primary;
+        color: $color-white;
+        padding: 3px 7px;
+        margin-left: 8px;
+        font-weight: 500;
+        font-size: 0.8rem;
+        border-radius: 2px;
     }
 }
 
