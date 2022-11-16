@@ -5,15 +5,16 @@
             <figure class="avatar">
                 <img :src="data.currentUser.image.png" :alt="data.currentUser.username" />
             </figure>
-            <button class="submit-button">
+            <Button>
                 send
-            </button>
+            </Button>
         </div>
     </form>
 </template>
 
 <script setup>
 import { useCommentStore } from '../../stores/comment';
+import Button from '../Button.vue';
 
 defineProps({
     modelValue: {
@@ -43,15 +44,5 @@ const data = useCommentStore();
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.submit-button {
-    background-color: $primary;
-    color: $color-white;
-    text-transform: uppercase;
-    font-weight: 700;
-    padding: 16px;
-    min-width: 104px;
-    border-radius: 8px;
 }
 </style>
