@@ -64,7 +64,7 @@ defineProps({
 const data = useCommentStore();
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .comment-content {
     background-color: $color-white;
     border-radius: 0.5rem;
@@ -77,15 +77,6 @@ const data = useCommentStore();
     align-items: center;
     text-transform: lowercase;
     margin-bottom: 1rem;
-
-    .avatar {
-        margin-right: 1rem;
-
-        img {
-            width: 32px;
-            height: 32px;
-        }
-    }
 
     .name {
         font-weight: 500;
@@ -105,6 +96,16 @@ const data = useCommentStore();
         font-weight: 500;
         font-size: 0.8rem;
         border-radius: 2px;
+    }
+}
+
+.avatar {
+    margin-right: 1rem;
+
+    &,
+    img {
+        width: 32px;
+        height: 32px;
     }
 }
 

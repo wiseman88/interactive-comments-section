@@ -7,11 +7,13 @@
             </div>
         </div>
     </div>
+    <CommentCreate />
 </template>
 
 <script setup>
 import { useCommentStore } from '../../stores/comment';
 import Comment from './Comment.vue';
+import CommentCreate from './CommentCreate.vue';
 
 const data = useCommentStore();
 </script>
