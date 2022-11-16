@@ -1,11 +1,10 @@
 import { defineStore } from "pinia";
-import data from '../data.json';
 
 export const useCommentStore = defineStore({
     id: 'comment',
     state: () => {
         return {
-            jsonData: data,
+            jsonData: JSON.parse(localStorage.getItem('data')),
         }
     },
     getters: {

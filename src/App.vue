@@ -5,7 +5,13 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
 import CommentList from './components/comment/CommentList.vue';
+import data from './data.json'
+
+onMounted(() => {
+  localStorage.setItem('data', JSON.stringify(data));
+})
 </script>
 
 <style lang="scss">
