@@ -7,7 +7,7 @@
             <span class="name">
                 {{ comment.user.username }}
             </span>
-            <span class="current-user" v-if="data.currentUser.username === comment.user.username">
+            <span class="current-user" v-if="checkCurrentUser">
                 you
             </span>
             <span class="date">
@@ -38,7 +38,11 @@
                     </svg>
                 </button>
             </div>
-            <button class="reply-button">
+            <div v-if="checkCurrentUser" class="comment-action">
+                <button style="margin-right: 5px;">asdasd</button>
+                <button>asdadsasdasd</button>
+            </div>
+            <button v-else class="reply-button">
                 <span class="icon">
                     <svg width="14" height="13" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -55,13 +59,18 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import { useCommentStore } from '../../stores/comment';
 
-defineProps({
+const props = defineProps({
     comment: Object
 })
 
 const data = useCommentStore();
+
+const checkCurrentUser = computed(() => {
+    return data.currentUser.username === props.comment.user.username;
+})
 </script>
 
 <style lang="scss">
@@ -166,5 +175,10 @@ const data = useCommentStore();
             font-weight: 700;
         }
     }
+}
+
+.comment-action {
+    display: flex;
+    align-items: center;
 }
 </style>
