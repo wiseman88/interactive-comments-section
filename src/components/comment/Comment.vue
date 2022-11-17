@@ -31,21 +31,16 @@
                 </button>
             </div>
             <div v-if="checkCurrentUser" class="comment-action">
-                <button>
+                <ActionButton :text="'delete'" class="button-secondary mr-1">
                     <DeleteIcon />
-                </button>
-                <button style="margin-right: 5px;">
+                </ActionButton>
+                <ActionButton :text="'edit'" class="button-primary">
                     <EditIcon />
-                </button>
+                </ActionButton>
             </div>
-            <button v-else class="reply-button">
-                <span class="icon">
-                    <ReplyIcon />
-                </span>
-                <span class="text">
-                    Reply
-                </span>
-            </button>
+            <ActionButton v-else :text="'reply'" class="button-primary">
+                <ReplyIcon />
+            </ActionButton>
         </div>
     </div>
 </template>
@@ -58,6 +53,7 @@ import ReplyIcon from '../icons/ReplyIcon.vue';
 import EditIcon from '../icons/EditIcon.vue';
 import DeleteIcon from '../icons/DeleteIcon.vue';
 import { useCommentStore } from '../../stores/comment';
+import ActionButton from '../ActionButton.vue';
 
 const props = defineProps({
     comment: Object
@@ -154,22 +150,6 @@ const checkCurrentUser = computed(() => {
                     }
                 }
             }
-        }
-    }
-
-    .reply-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .icon {
-            margin-top: 5px;
-            margin-right: 7px;
-        }
-
-        .text {
-            color: $primary;
-            font-weight: 700;
         }
     }
 }
