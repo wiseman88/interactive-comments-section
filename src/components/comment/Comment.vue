@@ -20,13 +20,13 @@
         </p>
         <div class="comment-footer">
             <div class="vote">
-                <button>
+                <button @click="upvote()" :disabled="downVoted">
                     <PlusIcon />
                 </button>
                 <span class="vote-total">
                     {{ comment.score }}
                 </span>
-                <button>
+                <button @click="downvote()" :disabled="upVoted">
                     <MinusIcon />
                 </button>
             </div>
@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import PlusIcon from '../icons/PlusIcon.vue';
 import MinusIcon from '../icons/MinusIcon.vue';
 import ReplyIcon from '../icons/ReplyIcon.vue';
@@ -60,6 +60,23 @@ const props = defineProps({
 })
 
 const data = useCommentStore();
+
+let upVoted = ref(false);
+let downVoted = ref(false);
+
+const upvote = () => {
+    !upVoted.value ? props.comment.score++ : props.comment.score--
+    upVoted.value = !upVoted.value
+
+    localStorage.setItem('data', JSON.stringify(data))
+}
+
+const downvote = () => {
+    !downVoted.value ? props.comment.score-- : props.comment.score++
+    downVoted.value = !downVoted.value
+
+    localStorage.setItem('data', JSON.stringify(data))
+}
 
 const checkCurrentUser = computed(() => {
     return data.currentUser.username === props.comment.user.username;
