@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 import CommentList from './components/comment/CommentList.vue';
 import data from './data.json'
 

@@ -1,6 +1,9 @@
 <template>
     <div class="comment-content">
         <div class="comment-header">
+            <span>
+                {{ comment.id }}
+            </span>
             <figure class="avatar">
                 <img :src="comment.user.image.png" :alt="comment.user.username">
             </figure>
