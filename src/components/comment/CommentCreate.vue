@@ -11,6 +11,9 @@
         </div>
     </form>
     <p>
+        {{ data.commentsCount }}
+    </p>
+    <p>
         {{ comment }}
     </p>
 </template>
@@ -29,8 +32,6 @@ defineProps({
 
 const data = useCommentStore();
 
-let commentsCount = data.comments.length;
-
 let comment = reactive({
     type: Object,
     id: Number,
@@ -48,7 +49,7 @@ let comment = reactive({
 })
 
 const addComment = (item) => {
-    comment.id = commentsCount + 1
+    comment.id = data.commentsCount + 1
     comment.content = item
     comment.createdAt = Date.now()
     comment.score = 0
@@ -56,8 +57,6 @@ const addComment = (item) => {
     comment.user.image.png = data.currentUser.image.png
     comment.user.image.webp = data.currentUser.image.webp
     comment.replies = []
-
-    commentsCount = commentsCount + 1
 
     data.comments.push(comment);
 

@@ -9,6 +9,7 @@ export const useCommentStore = defineStore({
     },
     getters: {
         comments: (state) => state.jsonData.comments,
+        commentsCount: (state) => state.jsonData.comments.length,
         currentUser: (state) => state.jsonData.currentUser
     },
     actions: {
