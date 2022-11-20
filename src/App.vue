@@ -10,7 +10,7 @@ import CommentList from './components/comment/CommentList.vue';
 import data from './data.json'
 
 onBeforeMount(() => {
-  localStorage.setItem('data', JSON.stringify(data));
+  localStorage.getItem('data') ? null : localStorage.setItem('data', JSON.stringify(data));
 })
 </script>
 
