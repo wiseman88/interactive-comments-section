@@ -5,7 +5,7 @@
             <figure class="avatar">
                 <img :src="data.currentUser.image.png" :alt="data.currentUser.username" />
             </figure>
-            <Button @click.prevent="addComment(modelValue)">
+            <Button @click.prevent="createComment(modelValue, data)">
                 send
             </Button>
         </div>
@@ -13,13 +13,10 @@
     <p>
         {{ data.commentsCount }}
     </p>
-    <p>
-        {{ comment }}
-    </p>
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import Comment from '/src/classes/Comment.js'
 import { useCommentStore } from '../../stores/comment';
 import Button from '../Button.vue';
 
@@ -32,49 +29,10 @@ defineProps({
 
 const data = useCommentStore();
 
-let comment = reactive({
-    type: Object,
-    id: Number,
-    content: String,
-    createdAt: Date,
-    score: Number,
-    user: {
-        type: Object,
-        username: String,
-        image: {
-            png: String,
-            webp: String
-        }
-    }
-})
+const createComment = (a, b) => {
+    let comment = new Comment;
 
-const addComment = (item) => {
-    comment.id = data.commentsCount + 1
-    comment.content = item
-    comment.createdAt = Date.now()
-    comment.score = 0
-    comment.user.username = data.currentUser.username
-    comment.user.image.png = data.currentUser.image.png
-    comment.user.image.webp = data.currentUser.image.webp
-    comment.replies = []
-
-    data.comments.push(comment);
-
-    localStorage.setItem('data', JSON.stringify(data));
-
-    comment = {
-        id: null,
-        content: null,
-        createdAt: null,
-        score: null,
-        user: {
-            username: null,
-            image: {
-                png: null,
-                webp: null
-            }
-        }
-    }
+    comment.addComment(a, b)
 }
 </script>
 
