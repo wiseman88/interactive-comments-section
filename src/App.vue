@@ -5,11 +5,11 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted } from 'vue';
+import { onBeforeMount } from 'vue';
 import CommentList from './components/comment/CommentList.vue';
 import data from './data.json'
 
-onMounted(() => {
+onBeforeMount(() => {
   localStorage.setItem('data', JSON.stringify(data));
 })
 </script>
