@@ -13,6 +13,8 @@ export const useCommentStore = defineStore({
         currentUser: (state) => state.jsonData.currentUser
     },
     actions: {
-
+        saveDataToLocalStorage(dataToSave) {
+            localStorage.setItem('data', JSON.stringify(dataToSave))
+        }
     }
 })

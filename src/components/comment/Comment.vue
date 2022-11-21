@@ -71,14 +71,14 @@ const upvote = () => {
     !upVoted.value ? props.comment.score++ : props.comment.score--
     upVoted.value = !upVoted.value
 
-    localStorage.setItem('data', JSON.stringify(data))
+    data.saveDataToLocalStorage(data);
 }
 
 const downvote = () => {
     !downVoted.value ? props.comment.score-- : props.comment.score++
     downVoted.value = !downVoted.value
 
-    localStorage.setItem('data', JSON.stringify(data))
+    data.saveDataToLocalStorage(data);
 }
 
 const checkCurrentUser = computed(() => {

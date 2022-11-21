@@ -1,3 +1,4 @@
+import { useCommentStore } from '../stores/comment';
 import User from './User';
 
 class Comment {
@@ -11,8 +12,8 @@ class Comment {
     }
 
     addComment(item, data) {
-
-        console.log(this)
+        
+        const storeData = useCommentStore();
 
         this.id = data.commentsCount + 1
         this.content = item
@@ -25,7 +26,7 @@ class Comment {
 
         data.comments.push(this);
 
-        localStorage.setItem('data', JSON.stringify(data));
+        storeData.saveDataToLocalStorage(data);
     }
 }
 
