@@ -34,14 +34,14 @@
                 </button>
             </div>
             <div v-if="checkCurrentUser" class="comment-action">
-                <ActionButton :text="'delete'" class="button-secondary mr-1" @click="isOpen = true">
+                <ActionButton :text="'delete'" class="color-secondary mr-1" @click="isOpen = true">
                     <DeleteIcon />
                 </ActionButton>
-                <ActionButton :text="'edit'" class="button-primary">
+                <ActionButton :text="'edit'" class="color-primary">
                     <EditIcon />
                 </ActionButton>
             </div>
-            <ActionButton v-else :text="'reply'" class="button-primary">
+            <ActionButton v-else :text="'reply'" class="color-primary">
                 <ReplyIcon />
             </ActionButton>
         </div>

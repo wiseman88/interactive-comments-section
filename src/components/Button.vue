@@ -1,5 +1,5 @@
 <template>
-    <button class="submit-button">
+    <button class="button">
         <slot></slot>
     </button>
 </template>
@@ -9,12 +9,11 @@
 </script>
 
 <style lang="scss" scoped>
-.submit-button {
-    background-color: $primary;
+.button {
     color: $color-white;
     text-transform: uppercase;
     font-weight: 700;
-    padding: 16px;
+    padding: 16px 22px;
     min-width: 104px;
     border-radius: 8px;
 }

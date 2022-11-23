@@ -8,10 +8,10 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <Button @click="$emit('close')">
+                <Button @click="$emit('close')" class="bg-default">
                     no, cancel
                 </Button>
-                <Button>
+                <Button class="bg-secondary">
                     yes, delete
                 </Button>
             </div>
@@ -62,6 +62,10 @@ const props = defineProps({
         color: $primary-moderate;
         line-height: 1.4rem;
         margin-bottom: 1rem;
+    }
+
+    button {
+        min-width: 138px;
     }
 }
 

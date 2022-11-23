@@ -5,7 +5,7 @@
             <figure class="avatar">
                 <img :src="data.currentUser.image.png" :alt="data.currentUser.username" />
             </figure>
-            <Button @click.prevent="createComment(modelValue, data)">
+            <Button @click.prevent="createComment(modelValue, data)" class="bg-primary">
                 send
             </Button>
         </div>

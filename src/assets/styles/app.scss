@@ -22,10 +22,22 @@ button {
     margin-right: 1rem;
 }
 
-.button-primary {
+.color-primary {
     color: $primary;
 }
 
-.button-secondary {
+.color-secondary {
     color: $secondary;
+}
+
+.bg-primary {
+    background-color: $primary;
+}
+
+.bg-secondary {
+    background-color: $secondary;
+}
+
+.bg-default {
+    background-color: $primary-moderate;
 }
