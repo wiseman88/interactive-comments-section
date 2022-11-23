@@ -34,7 +34,7 @@
                 </button>
             </div>
             <div v-if="checkCurrentUser" class="comment-action">
-                <ActionButton :text="'delete'" class="button-secondary mr-1">
+                <ActionButton :text="'delete'" class="button-secondary mr-1" @click="isOpen = true">
                     <DeleteIcon />
                 </ActionButton>
                 <ActionButton :text="'edit'" class="button-primary">
@@ -46,6 +46,7 @@
             </ActionButton>
         </div>
     </div>
+    <Modal :show="isOpen" @close="isOpen = false" />
 </template>
 
 <script setup>
@@ -57,6 +58,7 @@ import EditIcon from '../icons/EditIcon.vue';
 import DeleteIcon from '../icons/DeleteIcon.vue';
 import { useCommentStore } from '../../stores/comment';
 import ActionButton from '../ActionButton.vue';
+import Modal from '../Modal.vue';
 
 const props = defineProps({
     comment: Object
@@ -64,6 +66,7 @@ const props = defineProps({
 
 const data = useCommentStore();
 
+let isOpen = ref(false);
 let upVoted = ref(false);
 let downVoted = ref(false);
 
