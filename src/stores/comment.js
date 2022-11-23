@@ -14,7 +14,10 @@ export const useCommentStore = defineStore({
     },
     actions: {
         saveDataToLocalStorage(dataToSave) {
-            localStorage.setItem('data', JSON.stringify(dataToSave))
+            let storageData = localStorage.getItem('data')
+            storageData = storageData ? JSON.parse(localStorage.getItem('data')) : {}
+            storageData['comments'] = dataToSave.comments
+            localStorage.setItem('data', JSON.stringify(storageData))
         }
     }
 })

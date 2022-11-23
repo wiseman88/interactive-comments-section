@@ -12,7 +12,7 @@ class Comment {
     }
 
     addComment(item, data) {
-        
+
         const storeData = useCommentStore();
 
         this.id = data.commentsCount + 1
