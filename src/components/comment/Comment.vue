@@ -46,7 +46,7 @@
             </ActionButton>
         </div>
     </div>
-    <Modal :show="isOpen" @close="isOpen = false" />
+    <Modal v-if="checkCurrentUser" :show="isOpen" @close="isOpen = false" />
 </template>
 
 <script setup>
