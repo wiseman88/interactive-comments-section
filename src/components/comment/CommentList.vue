@@ -1,11 +1,11 @@
 <template>
     <div v-for="comment in data.comments" :key="comment.id">
-        <Comment :comment="comment" />
-        <div class="replies-container" v-if="comment.replies.length">
+        <Comment v-if="!comment.parentId" :comment="comment" />
+        <!-- <div class="replies-container" v-if="comment.replies.length">
             <div v-for="reply in comment.replies" :key="reply.id">
                 <Comment :comment="reply" />
             </div>
-        </div>
+        </div> -->
     </div>
     <CommentCreate />
 </template>
