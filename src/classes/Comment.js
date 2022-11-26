@@ -28,6 +28,15 @@ class Comment {
 
         storeData.saveDataToLocalStorage(data);
     }
+
+    deleteComment(id, data) {
+        const storeData = useCommentStore();
+
+        let filteredComments = data.comments.filter(comment => comment.id !== id)
+
+        storeData.updateStoreData(filteredComments)
+        storeData.saveDataToLocalStorage(data);
+    }
 }
 
 export default Comment;

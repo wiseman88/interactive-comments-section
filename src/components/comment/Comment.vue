@@ -54,7 +54,7 @@
             <Comment :comment="reply" />
         </div>
     </div>
-    <Modal v-if="checkCurrentUser" :show="isOpen" @close="isOpen = false" />
+    <Modal v-if="checkCurrentUser" :show="isOpen" @close="isOpen = false" :commentId="comment.id" />
 </template>
 
 <script setup>

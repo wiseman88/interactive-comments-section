@@ -6,12 +6,15 @@
                 <p>
                     Are you sure you want to delete this comment? This will remove the comment and can't be undone.
                 </p>
+                <p>
+                    {{ commentId }}
+                </p>
             </div>
             <div class="modal-footer">
                 <Button @click="$emit('close')" class="bg-default">
                     no, cancel
                 </Button>
-                <Button class="bg-secondary">
+                <Button class="bg-secondary" @click="comment.deleteComment(commentId, data)">
                     yes, delete
                 </Button>
             </div>
@@ -20,6 +23,8 @@
 </template>
 
 <script setup>
+import { useCommentStore } from '../stores/comment';
+import Comment from '../classes/Comment';
 import Button from './Button.vue';
 
 const props = defineProps({
@@ -27,8 +32,15 @@ const props = defineProps({
         type: Boolean,
         default: false,
         required: true
+    },
+    commentId: {
+        type: Number
     }
 })
+
+const data = useCommentStore()
+
+let comment = new Comment;
 </script>
 
 <style lang="scss" scoped>
