@@ -46,6 +46,14 @@
             </ActionButton>
         </div>
     </div>
+    <p>
+
+    </p>
+    <div class="replies-container" v-if="getReplies">
+        <div v-for="reply in getReplies" :key="reply.id">
+            <Comment :comment="reply" />
+        </div>
+    </div>
     <Modal v-if="checkCurrentUser" :show="isOpen" @close="isOpen = false" />
 </template>
 
@@ -61,7 +69,8 @@ import ActionButton from '../ActionButton.vue';
 import Modal from '../Modal.vue';
 
 const props = defineProps({
-    comment: Object
+    comment: Object,
+    replies: Object
 })
 
 const data = useCommentStore();
@@ -86,6 +95,10 @@ const downvote = () => {
 
 const checkCurrentUser = computed(() => {
     return data.currentUser.username === props.comment.user.username;
+})
+
+const getReplies = computed(() => {
+    return data.comments.filter(comment => comment.parentId === props.comment.id)
 })
 </script>
 
@@ -180,5 +193,10 @@ const checkCurrentUser = computed(() => {
 .comment-action {
     display: flex;
     align-items: center;
+}
+
+.replies-container {
+    padding-left: 1rem;
+    border-left: 1px solid #E8E9ED;
 }
 </style>
