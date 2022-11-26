@@ -2,13 +2,13 @@ import { useCommentStore } from '../stores/comment';
 import User from './User';
 
 class Comment {
-    constructor(id, content, createdAt, score, replies) {
+    constructor(id, content, createdAt, score, parentId) {
         this.id = id;
         this.content = content;
         this.createdAt = createdAt;
         this.score = score;
         this.user = new User;
-        this.replies = replies;
+        this.parentId = parentId;
     }
 
     addComment(item, data) {
@@ -22,9 +22,9 @@ class Comment {
         this.user.username = data.currentUser.username
         this.user.image.png = data.currentUser.image.png
         this.user.image.webp = data.currentUser.image.webp
-        this.replies = []
+        this.parentId = null
 
-        data.comments.push(this);
+        data.comments.unshift(this);
 
         storeData.saveDataToLocalStorage(data);
     }
