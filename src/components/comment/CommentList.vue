@@ -2,7 +2,7 @@
     <div v-for="comment in data.comments" :key="comment.id">
         <Comment v-if="!comment.parentId" :comment="comment" />
     </div>
-    <CommentCreate />
+    <CommentCreate :modelValue="'Add comment...'" />
 </template>
 
 <script setup>

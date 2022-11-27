@@ -10,9 +10,6 @@
             </Button>
         </div>
     </form>
-    <p>
-        {{ data.commentsCount }}
-    </p>
 </template>
 
 <script setup>
@@ -23,7 +20,7 @@ import Button from '../Button.vue';
 defineProps({
     modelValue: {
         type: String,
-        default: 'Add a comment...'
+        // default: 'Add a comment...'
     },
 })
 
