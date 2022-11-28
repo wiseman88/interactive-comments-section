@@ -3,7 +3,7 @@
         <textarea class="textarea" name="comment" id="" v-model="modelValue">{{ modelValue }}</textarea>
         <div class="form-footer">
             <figure class="avatar">
-                <img :src="data.currentUser.image.png" :alt="data.currentUser.username" />
+                <img :src="currentUser.image.png" :alt="currentUser.username" />
             </figure>
             <Button @click.prevent="createComment(modelValue, data)" class="bg-primary">
                 send
@@ -16,6 +16,7 @@
 import Comment from '/src/classes/Comment.js'
 import { useCommentStore } from '../../stores/comment';
 import Button from '../Button.vue';
+import { storeToRefs } from 'pinia';
 
 defineProps({
     modelValue: {
@@ -25,6 +26,7 @@ defineProps({
 })
 
 const data = useCommentStore();
+const { currentUser } = storeToRefs(data);
 
 const createComment = (a, b) => {
     let comment = new Comment;

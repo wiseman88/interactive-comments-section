@@ -37,13 +37,12 @@
                 <ActionButton :text="'delete'" class="color-secondary mr-1" @click="isOpen = true">
                     <DeleteIcon />
                 </ActionButton>
-                <ActionButton :text="'edit'" class="color-primary"
-                    @click="data.setActiveComment(comment.id, 'editing')">
+                <ActionButton :text="'edit'" class="color-primary" @click="setActiveComment(comment.id, 'editing')">
                     <EditIcon />
                 </ActionButton>
             </div>
             <ActionButton v-else :text="'reply'" class="color-primary"
-                @click="data.setActiveComment(comment.id, 'replying')">
+                @click="setActiveComment(comment.id, 'replying')">
                 <ReplyIcon />
             </ActionButton>
         </div>
@@ -54,8 +53,8 @@
         </div>
     </div>
     <Modal v-if="checkCurrentUser" :show="isOpen" @close="isOpen = false" :commentId="comment.id" />
-    <CommentCreate v-if="data.activeComment.id === comment.id"
-        :modelValue="data.activeComment.status === 'replying' ? '@' + comment.user.username + ' ' : data.activeComment.status === 'editing' ? comment.content : null" />
+    <CommentCreate v-if="activeComment.id === comment.id"
+        :modelValue="activeComment.status === 'replying' ? '@' + comment.user.username + ' ' : activeComment.status === 'editing' ? comment.content : null" />
 </template>
 
 <script setup>
@@ -69,6 +68,7 @@ import { useCommentStore } from '../../stores/comment';
 import ActionButton from '../ActionButton.vue';
 import Modal from '../Modal.vue';
 import CommentCreate from './CommentCreate.vue';
+import { storeToRefs } from 'pinia';
 
 const props = defineProps({
     comment: Object,
@@ -76,6 +76,9 @@ const props = defineProps({
 })
 
 const data = useCommentStore();
+
+const { activeComment } = storeToRefs(data)
+const { setActiveComment } = data
 
 let isOpen = ref(false);
 let upVoted = ref(false);
