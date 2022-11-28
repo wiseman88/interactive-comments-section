@@ -37,24 +37,25 @@
                 <ActionButton :text="'delete'" class="color-secondary mr-1" @click="isOpen = true">
                     <DeleteIcon />
                 </ActionButton>
-                <ActionButton :text="'edit'" class="color-primary">
+                <ActionButton :text="'edit'" class="color-primary"
+                    @click="data.setActiveComment(comment.id, 'editing')">
                     <EditIcon />
                 </ActionButton>
             </div>
-            <ActionButton v-else :text="'reply'" class="color-primary">
+            <ActionButton v-else :text="'reply'" class="color-primary"
+                @click="data.setActiveComment(comment.id, 'replying')">
                 <ReplyIcon />
             </ActionButton>
         </div>
     </div>
-    <p>
-
-    </p>
     <div class="replies-container" v-if="getReplies">
         <div v-for="reply in getReplies" :key="reply.id">
             <Comment :comment="reply" />
         </div>
     </div>
     <Modal v-if="checkCurrentUser" :show="isOpen" @close="isOpen = false" :commentId="comment.id" />
+    <CommentCreate v-if="data.activeComment.id === comment.id"
+        :modelValue="data.activeComment.status === 'replying' ? '@' + comment.user.username + ' ' : data.activeComment.status === 'editing' ? comment.content : null" />
 </template>
 
 <script setup>
@@ -67,6 +68,7 @@ import DeleteIcon from '../icons/DeleteIcon.vue';
 import { useCommentStore } from '../../stores/comment';
 import ActionButton from '../ActionButton.vue';
 import Modal from '../Modal.vue';
+import CommentCreate from './CommentCreate.vue';
 
 const props = defineProps({
     comment: Object,

@@ -5,6 +5,10 @@ export const useCommentStore = defineStore({
     state: () => {
         return {
             jsonData: JSON.parse(localStorage.getItem('data')),
+            activeComment: {
+                id: null,
+                status: ''
+            }
         }
     },
     getters: {
@@ -21,6 +25,10 @@ export const useCommentStore = defineStore({
         },
         updateStoreData(dataToStore) {
             this.jsonData.comments = dataToStore
+        },
+        setActiveComment(id, status) {
+            this.activeComment.id = id
+            this.activeComment.status = status
         }
     }
 })
