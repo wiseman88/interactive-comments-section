@@ -5,7 +5,7 @@
             <figure class="avatar">
                 <img :src="currentUser.image.png" :alt="currentUser.username" />
             </figure>
-            <Button @click.prevent="createComment(modelValue, data)" class="bg-primary">
+            <Button @click.prevent="createComment(modelValue, data, parentId)" class="bg-primary">
                 send
             </Button>
         </div>
@@ -23,15 +23,18 @@ defineProps({
         type: String,
         // default: 'Add a comment...'
     },
+    parentId: {
+        type: Number,
+    }
 })
 
 const data = useCommentStore();
 const { currentUser } = storeToRefs(data);
 
-const createComment = (a, b) => {
+const createComment = (a, b, c) => {
     let comment = new Comment;
 
-    comment.addComment(a, b)
+    comment.addComment(a, b, c)
 }
 </script>
 

@@ -11,7 +11,7 @@ class Comment {
         this.parentId = parentId;
     }
 
-    addComment(item, data) {
+    addComment(item, data, parentId) {
 
         const storeData = useCommentStore();
 
@@ -22,7 +22,9 @@ class Comment {
         this.user.username = data.currentUser.username
         this.user.image.png = data.currentUser.image.png
         this.user.image.webp = data.currentUser.image.webp
-        this.parentId = null
+        this.parentId = parentId ? parentId : null
+
+        console.log(this.parentId)
 
         data.comments.unshift(this);
 
