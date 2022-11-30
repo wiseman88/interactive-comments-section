@@ -6,7 +6,7 @@
                 <img :src="currentUser.image.png" :alt="currentUser.username" />
             </figure>
             <Button @click.prevent="createComment(modelValue, data, parentId)" class="bg-primary">
-                send
+                {{ text }}
             </Button>
         </div>
     </form>
@@ -25,6 +25,9 @@ defineProps({
     },
     parentId: {
         type: Number,
+    },
+    text: {
+        type: String,
     }
 })
 

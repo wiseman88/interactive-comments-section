@@ -55,7 +55,7 @@
     <Modal v-if="checkCurrentUser" :show="isOpen" @close="isOpen = false" :commentId="comment.id" />
     <CommentCreate v-if="activeComment.id === comment.id"
         :modelValue="activeComment.status === 'replying' ? '@' + comment.user.username + ' ' : activeComment.status === 'editing' ? comment.content : null"
-        :parentId="comment.id" />
+        :parentId="comment.id" :text="'update'" />
 </template>
 
 <script setup>
