@@ -53,9 +53,12 @@
         </div>
     </div>
     <Modal v-if="checkCurrentUser" :show="isOpen" @close="isOpen = false" :commentId="comment.id" />
-    <CommentCreate v-if="activeComment.id === comment.id"
-        :modelValue="activeComment.status === 'replying' ? '@' + comment.user.username + ' ' : activeComment.status === 'editing' ? comment.content : null"
-        :parentId="comment.id" :text="'update'" />
+    <div v-if="activeComment.id === comment.id">
+        <CommentCreate v-if="activeComment.status === 'replying'" :modelValue="'@' + comment.user.username + ' '"
+            :parentId="comment.id" :text="'send'" />
+        <CommentCreate v-if="activeComment.status === 'editing'" :model-value="comment.content" :id="comment.id"
+            :text="'update'" />
+    </div>
 </template>
 
 <script setup>

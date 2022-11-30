@@ -5,7 +5,10 @@
             <figure class="avatar">
                 <img :src="currentUser.image.png" :alt="currentUser.username" />
             </figure>
-            <Button @click.prevent="createComment(modelValue, data, parentId)" class="bg-primary">
+            <Button v-if="id" @click.prevent="comment.updateComment(modelValue, data, id)" class="bg-primary">
+                {{ text }}
+            </Button>
+            <Button v-else @click.prevent="comment.addComment(modelValue, data, parentId)" class="bg-primary">
                 {{ text }}
             </Button>
         </div>
@@ -26,6 +29,9 @@ defineProps({
     parentId: {
         type: Number,
     },
+    id: {
+        type: Number,
+    },
     text: {
         type: String,
     }
@@ -33,12 +39,7 @@ defineProps({
 
 const data = useCommentStore();
 const { currentUser } = storeToRefs(data);
-
-const createComment = (a, b, c) => {
-    let comment = new Comment;
-
-    comment.addComment(a, b, c)
-}
+let comment = new Comment;
 </script>
 
 <style lang="scss" scoped>

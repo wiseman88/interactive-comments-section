@@ -24,9 +24,17 @@ class Comment {
         this.user.image.webp = data.currentUser.image.webp
         this.parentId = parentId ? parentId : null
 
-        console.log(this.parentId)
-
         data.comments.unshift(this);
+
+        storeData.saveDataToLocalStorage(data);
+    }
+
+    updateComment(content, data, id) {
+        const storeData = useCommentStore();
+
+        let filteredComment = data.comments.find(comment => comment.id === id)
+
+        filteredComment['content'] = content;
 
         storeData.saveDataToLocalStorage(data);
     }
