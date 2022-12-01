@@ -111,7 +111,9 @@ const checkCurrentUser = computed(() => {
 })
 
 const getReplies = computed(() => {
-    return data.comments.filter(comment => comment.parentId === props.comment.id)
+    return data.comments
+        .filter(comment => comment.parentId === props.comment.id)
+        .sort((a, b) => a.createdAt - b.createdAt)
 })
 </script>
 

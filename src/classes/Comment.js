@@ -17,7 +17,7 @@ class Comment {
 
         this.id = data.commentsCount + 1
         this.content = item
-        this.createdAt = new Date()
+        this.createdAt = Date.now()
         this.score = 0
         this.user.username = data.currentUser.username
         this.user.image.png = data.currentUser.image.png
