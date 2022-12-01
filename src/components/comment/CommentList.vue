@@ -1,5 +1,5 @@
 <template>
-    <div v-for="comment in comments" :key="comment.id">
+    <div v-for="comment in commentsOrderedByScore" :key="comment.id">
         <Comment v-if="!comment.parentId" :comment="comment" />
     </div>
     <CommentCreate :modelValue="'Add comment...'" :text="'send'" />
@@ -12,7 +12,7 @@ import Comment from './Comment.vue';
 import CommentCreate from './CommentCreate.vue';
 
 const data = useCommentStore();
-const { comments } = storeToRefs(data);
+const { commentsOrderedByScore } = storeToRefs(data);
 </script>
 
 <style lang="scss" scoped>

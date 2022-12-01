@@ -13,6 +13,7 @@ export const useCommentStore = defineStore({
     },
     getters: {
         comments: (state) => state.jsonData.comments,
+        commentsOrderedByScore: (state) => state.jsonData.comments.sort((a, b) => b.score - a.score),
         commentsCount: (state) => state.jsonData.comments.length,
         currentUser: (state) => state.jsonData.currentUser
     },
