@@ -13,7 +13,10 @@
             <span class="current-user" v-if="checkCurrentUser">
                 you
             </span>
-            <span class="date">
+            <span v-if="(comment.id > 4)" class="date">
+                {{ moment(comment.createdAt).fromNow() }}
+            </span>
+            <span v-if="(comment.id < 5)" class="date">
                 {{ comment.createdAt }}
             </span>
         </div>
@@ -73,6 +76,7 @@ import ActionButton from '../ActionButton.vue';
 import Modal from '../Modal.vue';
 import CommentCreate from './CommentCreate.vue';
 import { storeToRefs } from 'pinia';
+import moment from 'moment';
 
 const props = defineProps({
     comment: Object,
