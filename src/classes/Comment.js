@@ -27,6 +27,8 @@ class Comment {
         data.comments.unshift(this);
 
         storeData.saveDataToLocalStorage(data);
+
+        storeData.activeComment = {};
     }
 
     updateComment(content, data, id) {
@@ -37,6 +39,8 @@ class Comment {
         filteredComment['content'] = content;
 
         storeData.saveDataToLocalStorage(data);
+
+        storeData.activeComment = {};
     }
 
     deleteComment(id, data) {
