@@ -10,7 +10,7 @@
             <span class="name">
                 {{ comment.user.username }}
             </span>
-            <span class="current-user" v-if="checkCurrentUser">
+            <span class="current-user" v-if="checkCurrentUser(data.currentUser.username, comment.user.username)">
                 you
             </span>
             <span v-if="(comment.id > 4)" class="date">
@@ -36,7 +36,7 @@
                     <MinusIcon />
                 </button>
             </div>
-            <div v-if="checkCurrentUser" class="comment-action">
+            <div v-if="checkCurrentUser(data.currentUser.username, comment.user.username)" class="comment-action">
                 <ActionButton :text="'delete'" class="color-secondary mr-1" @click="isOpen = true">
                     <DeleteIcon />
                 </ActionButton>
@@ -55,7 +55,8 @@
             <Comment :comment="reply" />
         </div>
     </div>
-    <Modal v-if="checkCurrentUser" :show="isOpen" @close="isOpen = false" :commentId="comment.id" />
+    <Modal v-if="checkCurrentUser(data.currentUser.username, comment.user.username)" :show="isOpen"
+        @close="isOpen = false" :commentId="comment.id" />
     <div v-if="activeComment.id === comment.id">
         <CommentCreate v-if="activeComment.status === 'replying'" :modelValue="'@' + comment.user.username + ' '"
             :parentId="comment.id" :text="'send'" />
@@ -77,6 +78,7 @@ import Modal from '../Modal.vue';
 import CommentCreate from './CommentCreate.vue';
 import { storeToRefs } from 'pinia';
 import moment from 'moment';
+import { checkCurrentUser } from '/src/user.js'
 
 const props = defineProps({
     comment: Object,
@@ -105,10 +107,6 @@ const downvote = () => {
 
     data.saveDataToLocalStorage(data);
 }
-
-const checkCurrentUser = computed(() => {
-    return data.currentUser.username === props.comment.user.username;
-})
 
 const getReplies = computed(() => {
     return data.comments
