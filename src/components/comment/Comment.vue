@@ -1,10 +1,7 @@
 <template>
     <div class="comment-content">
         <CommentHeader :comment="comment" />
-        <p class="comment-body">
-            <span class="reply-to" v-if="comment.replyingTo">@{{ comment.replyingTo }}</span>
-            {{ comment.content }}
-        </p>
+        <CommentBody :comment="comment" />
         <div class="comment-footer">
             <div class="vote">
                 <button @click="upvote()" :disabled="downVoted">
@@ -60,6 +57,7 @@ import CommentCreate from './CommentCreate.vue';
 import { storeToRefs } from 'pinia';
 import { checkCurrentUser } from '/src/user.js'
 import CommentHeader from './CommentHeader.vue';
+import CommentBody from './CommentBody.vue';
 
 const props = defineProps({
     comment: Object,
