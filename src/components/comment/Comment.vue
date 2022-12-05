@@ -2,31 +2,7 @@
     <div class="comment-content">
         <CommentHeader :comment="comment" />
         <CommentBody :comment="comment" />
-        <div class="comment-footer">
-            <div class="vote">
-                <button @click="upvote()" :disabled="downVoted">
-                    <PlusIcon />
-                </button>
-                <span class="vote-total">
-                    {{ comment.score }}
-                </span>
-                <button @click="downvote()" :disabled="upVoted">
-                    <MinusIcon />
-                </button>
-            </div>
-            <div v-if="checkCurrentUser(data.currentUser.username, comment.user.username)" class="comment-action">
-                <ActionButton :text="'delete'" class="color-secondary mr-1" @click="isOpen = true">
-                    <DeleteIcon />
-                </ActionButton>
-                <ActionButton :text="'edit'" class="color-primary" @click="setActiveComment(comment.id, 'editing')">
-                    <EditIcon />
-                </ActionButton>
-            </div>
-            <ActionButton v-else :text="'reply'" class="color-primary"
-                @click="setActiveComment(comment.id, 'replying')">
-                <ReplyIcon />
-            </ActionButton>
-        </div>
+        <CommentFooter :comment="comment" />
     </div>
     <div class="replies-container" v-if="getReplies">
         <div v-for="reply in getReplies" :key="reply.id">
@@ -45,19 +21,14 @@
 
 <script setup>
 import { computed, ref } from 'vue';
-import PlusIcon from '../icons/PlusIcon.vue';
-import MinusIcon from '../icons/MinusIcon.vue';
-import ReplyIcon from '../icons/ReplyIcon.vue';
-import EditIcon from '../icons/EditIcon.vue';
-import DeleteIcon from '../icons/DeleteIcon.vue';
 import { useCommentStore } from '../../stores/comment';
-import ActionButton from '../ActionButton.vue';
 import Modal from '../Modal.vue';
 import CommentCreate from './CommentCreate.vue';
 import { storeToRefs } from 'pinia';
 import { checkCurrentUser } from '/src/user.js'
 import CommentHeader from './CommentHeader.vue';
 import CommentBody from './CommentBody.vue';
+import CommentFooter from './CommentFooter.vue';
 
 const props = defineProps({
     comment: Object,
@@ -67,25 +38,8 @@ const props = defineProps({
 const data = useCommentStore();
 
 const { activeComment } = storeToRefs(data)
-const { setActiveComment } = data
 
 let isOpen = ref(false);
-let upVoted = ref(false);
-let downVoted = ref(false);
-
-const upvote = () => {
-    !upVoted.value ? props.comment.score++ : props.comment.score--
-    upVoted.value = !upVoted.value
-
-    data.saveDataToLocalStorage(data);
-}
-
-const downvote = () => {
-    !downVoted.value ? props.comment.score-- : props.comment.score++
-    downVoted.value = !downVoted.value
-
-    data.saveDataToLocalStorage(data);
-}
 
 const getReplies = computed(() => {
     return data.comments
