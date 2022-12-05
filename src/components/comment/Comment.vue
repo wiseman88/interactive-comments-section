@@ -4,11 +4,7 @@
         <CommentBody :comment="comment" />
         <CommentFooter :comment="comment" />
     </div>
-    <div class="replies-container" v-if="getReplies">
-        <div v-for="reply in getReplies" :key="reply.id">
-            <Comment :comment="reply" />
-        </div>
-    </div>
+    <CommentReply v-if="getReplies" :replies="getReplies" />
     <Modal v-if="checkCurrentUser(data.currentUser.username, comment.user.username)" :show="isOpen"
         @close="isOpen = false" :commentId="comment.id" />
     <div v-if="activeComment.id === comment.id">
@@ -29,6 +25,7 @@ import { checkCurrentUser } from '/src/user.js'
 import CommentHeader from './CommentHeader.vue';
 import CommentBody from './CommentBody.vue';
 import CommentFooter from './CommentFooter.vue';
+import CommentReply from './CommentReply.vue';
 
 const props = defineProps({
     comment: Object,
