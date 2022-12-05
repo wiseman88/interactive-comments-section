@@ -1,25 +1,6 @@
 <template>
     <div class="comment-content">
-        <div class="comment-header">
-            <span>
-                {{ comment.id }}
-            </span>
-            <figure class="avatar">
-                <img :src="comment.user.image.png" :alt="comment.user.username">
-            </figure>
-            <span class="name">
-                {{ comment.user.username }}
-            </span>
-            <span class="current-user" v-if="checkCurrentUser(data.currentUser.username, comment.user.username)">
-                you
-            </span>
-            <span v-if="(comment.id > 4)" class="date">
-                {{ moment(comment.createdAt).fromNow() }}
-            </span>
-            <span v-if="(comment.id < 5)" class="date">
-                {{ comment.createdAt }}
-            </span>
-        </div>
+        <CommentHeader :comment="comment" />
         <p class="comment-body">
             <span class="reply-to" v-if="comment.replyingTo">@{{ comment.replyingTo }}</span>
             {{ comment.content }}
@@ -77,8 +58,8 @@ import ActionButton from '../ActionButton.vue';
 import Modal from '../Modal.vue';
 import CommentCreate from './CommentCreate.vue';
 import { storeToRefs } from 'pinia';
-import moment from 'moment';
 import { checkCurrentUser } from '/src/user.js'
+import CommentHeader from './CommentHeader.vue';
 
 const props = defineProps({
     comment: Object,
