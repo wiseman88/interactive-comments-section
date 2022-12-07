@@ -41,3 +41,8 @@ button {
 .bg-default {
     background-color: $primary-moderate;
 }
+
+.button:hover,
+.action-button:hover {
+    opacity: 50%;
+}
