@@ -11,7 +11,7 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <Button @click="$emit('close')" class="bg-default">
+                <Button @click="closeModal" class="bg-default">
                     no, cancel
                 </Button>
                 <Button class="bg-secondary" @click="comment.deleteComment(commentId, data)">
@@ -26,6 +26,7 @@
 import { useCommentStore } from '../stores/comment';
 import Comment from '../classes/Comment';
 import Button from './Button.vue';
+import { useModalStore } from '../stores/modal';
 
 const props = defineProps({
     show: {
@@ -39,6 +40,9 @@ const props = defineProps({
 })
 
 const data = useCommentStore()
+const modal = useModalStore()
+
+const { closeModal } = modal
 
 let comment = new Comment;
 </script>

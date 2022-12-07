@@ -12,7 +12,7 @@
             </button>
         </div>
         <div v-if="checkCurrentUser(data.currentUser.username, comment.user.username)" class="comment-action">
-            <ActionButton :text="'delete'" class="color-secondary mr-1" @click="isOpen = true">
+            <ActionButton :text="'delete'" class="color-secondary mr-1" @click="openModal">
                 <DeleteIcon />
             </ActionButton>
             <ActionButton :text="'edit'" class="color-primary" @click="setActiveComment(comment.id, 'editing')">
@@ -35,14 +35,17 @@ import ActionButton from '../ActionButton.vue';
 import { checkCurrentUser } from '/src/user.js';
 import { useCommentStore } from '../../stores/comment';
 import { ref } from 'vue';
+import { useModalStore } from '../../stores/modal';
 
 const props = defineProps({
     comment: Object
 })
 
 const data = useCommentStore()
+const modal = useModalStore()
 
 const { setActiveComment } = data
+const { openModal } = modal
 
 let upVoted = ref(false)
 let downVoted = ref(false)
