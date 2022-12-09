@@ -1,4 +1,5 @@
 import { useCommentStore } from '../stores/comment';
+import { useModalStore } from '../stores/modal';
 import User from './User';
 
 class Comment {
@@ -45,11 +46,14 @@ class Comment {
 
     deleteComment(id, data) {
         const storeData = useCommentStore();
+        const modal = useModalStore();
 
         let filteredComments = data.comments.filter(comment => comment.id !== id)
 
         storeData.updateStoreData(filteredComments)
         storeData.saveDataToLocalStorage(data);
+
+        modal.closeModal()
     }
 }
 
