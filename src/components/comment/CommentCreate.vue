@@ -54,6 +54,11 @@ let comment = new Comment;
     color: $primary-moderate;
     width: 100%;
     height: 94px;
+
+    &:hover {
+        cursor: pointer;
+        border-color: $primary-dark;
+    }
 }
 
 .form-footer {
