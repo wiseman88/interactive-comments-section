@@ -35,17 +35,14 @@ import ActionButton from '../ActionButton.vue';
 import { checkCurrentUser } from '/src/user.js';
 import { useCommentStore } from '../../stores/comment';
 import { ref } from 'vue';
-import { useModalStore } from '../../stores/modal';
 
 const props = defineProps({
     comment: Object
 })
 
 const data = useCommentStore()
-const modal = useModalStore()
 
 const { setActiveComment } = data
-const { openModal } = modal
 
 let upVoted = ref(false)
 let downVoted = ref(false)
@@ -62,6 +59,12 @@ const downvote = () => {
     downVoted.value = !downVoted.value
 
     data.saveDataToLocalStorage(data)
+}
+
+const emit = defineEmits(['emitOpenModal'])
+
+const openModal = () => {
+    emit('emitOpenModal');
 }
 </script>
 

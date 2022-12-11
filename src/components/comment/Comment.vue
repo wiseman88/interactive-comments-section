@@ -2,11 +2,11 @@
     <div class="comment-content">
         <CommentHeader :comment="comment" />
         <CommentBody :comment="comment" />
-        <CommentFooter :comment="comment" />
+        <CommentFooter @emitOpenModal="isOpen = true" :comment="comment" />
     </div>
     <CommentReply v-if="getReplies" :replies="getReplies" />
-    <Modal v-if="checkCurrentUser(data.currentUser.username, comment.user.username)" :show="isOpen"
-        :commentId="comment.id" />
+    <Modal v-if="checkCurrentUser(data.currentUser.username, comment.user.username)" @emitCloseModal="isOpen = false"
+        v-show="isOpen" :commentId="comment.id" />
     <div v-if="activeComment.id === comment.id">
         <CommentCreate v-if="activeComment.status === 'replying'" :modelValue="'@' + comment.user.username + ' '"
             :parentId="comment.id" :text="'reply'" />
@@ -26,7 +26,6 @@ import CommentHeader from './CommentHeader.vue';
 import CommentBody from './CommentBody.vue';
 import CommentFooter from './CommentFooter.vue';
 import CommentReply from './CommentReply.vue';
-import { useModalStore } from '../../stores/modal';
 
 const props = defineProps({
     comment: Object,
@@ -34,16 +33,16 @@ const props = defineProps({
 })
 
 const data = useCommentStore();
-const modal = useModalStore();
-
 const { activeComment } = storeToRefs(data)
-const { closeModal, isOpen } = storeToRefs(modal)
 
 const getReplies = computed(() => {
     return data.comments
         .filter(comment => comment.parentId === props.comment.id)
         .sort((a, b) => a.createdAt - b.createdAt)
 })
+
+let isOpen = ref(false);
+
 </script>
 
 <style lang="scss">

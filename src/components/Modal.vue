@@ -1,13 +1,10 @@
 <template>
-    <div class="modal-overlay" v-show="show">
+    <div class="modal-overlay">
         <div class="modal">
             <div class="modal-content">
                 <h4>Delete comment</h4>
                 <p>
                     Are you sure you want to delete this comment? This will remove the comment and can't be undone.
-                </p>
-                <p>
-                    {{ commentId }}
                 </p>
             </div>
             <div class="modal-footer">
@@ -26,25 +23,22 @@
 import { useCommentStore } from '../stores/comment';
 import Comment from '../classes/Comment';
 import Button from './Button.vue';
-import { useModalStore } from '../stores/modal';
 
 const props = defineProps({
-    show: {
-        type: Boolean,
-        default: false,
-        required: true
-    },
     commentId: {
         type: Number
     }
 })
 
 const data = useCommentStore()
-const modal = useModalStore()
-
-const { closeModal } = modal
 
 let comment = new Comment;
+
+const emit = defineEmits(['emitCloseModal'])
+
+const closeModal = () => {
+    emit('emitCloseModal');
+}
 </script>
 
 <style lang="scss" scoped>
