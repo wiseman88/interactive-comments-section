@@ -8,7 +8,7 @@
             <Button v-if="id" @click.prevent="comment.updateComment(modelValue, data, id)" class="bg-primary">
                 {{ text }}
             </Button>
-            <Button v-else @click.prevent="comment.addComment(modelValue, data, parentId)" class="bg-primary">
+            <Button v-else @click.prevent="createComment(modelValue, data, parentId)" class="bg-primary">
                 {{ text }}
             </Button>
         </div>
@@ -39,7 +39,12 @@ defineProps({
 
 const data = useCommentStore();
 const { currentUser } = storeToRefs(data);
-let comment = new Comment;
+
+
+const createComment = (content, data, id) => {
+    let comment = new Comment;
+    comment.addComment(content, data, id)
+}
 </script>
 
 <style lang="scss" scoped>
