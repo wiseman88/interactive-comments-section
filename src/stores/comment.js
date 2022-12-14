@@ -59,6 +59,12 @@ export const useCommentStore = defineStore({
             data.saveDataToLocalStorage(data)
 
             data.activeComment = {}
+        },
+        deleteComment(data, id) {
+            let filteredComments = data.comments.filter(comment => comment.id !== id)
+
+            data.updateStoreData(filteredComments)
+            data.saveDataToLocalStorage(data)
         }
     }
 })

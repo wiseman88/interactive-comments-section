@@ -11,7 +11,7 @@
                 <Button @click="closeModal" class="bg-default">
                     no, cancel
                 </Button>
-                <Button class="bg-secondary" @click="comment.deleteComment(commentId, data)">
+                <Button class="bg-secondary" @click="deleteComment(data, commentId)">
                     yes, delete
                 </Button>
             </div>
@@ -21,7 +21,6 @@
 
 <script setup>
 import { useCommentStore } from '../stores/comment';
-import Comment from '../classes/Comment';
 import Button from './Button.vue';
 
 const props = defineProps({
@@ -32,7 +31,7 @@ const props = defineProps({
 
 const data = useCommentStore()
 
-let comment = new Comment;
+const { deleteComment } = data;
 
 const emit = defineEmits(['emitCloseModal'])
 
