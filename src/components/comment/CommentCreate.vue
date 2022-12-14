@@ -6,7 +6,7 @@
             <figure class="avatar">
                 <img :src="currentUser.image.png" :alt="currentUser.username" />
             </figure>
-            <Button v-if="id" @click.prevent="comment.updateComment(modelValue, data, id)" class="bg-primary">
+            <Button v-if="id" @click.prevent="editComment(modelValue, data, id)" class="bg-primary">
                 {{ text }}
             </Button>
             <Button v-else @click.prevent="createComment(modelValue, data, parentId)" class="bg-primary">
@@ -45,6 +45,11 @@ const { currentUser } = storeToRefs(data);
 const createComment = (content, data, id) => {
     let comment = new Comment;
     comment.addComment(content, data, id)
+}
+
+const editComment = (content, data, id) => {
+    let comment = new Comment;
+    comment.updateComment(content, data, id);
 }
 </script>
 
