@@ -2,7 +2,7 @@
     <div v-for="comment in commentsOrderedByScore" :key="comment.id">
         <Comment v-if="!comment.parentId" :comment="comment" />
     </div>
-    <CommentCreate :modelValue="'Add comment...'" :text="'send'" />
+    <CommentCreate :text="'send'" />
 </template>
 
 <script setup>
