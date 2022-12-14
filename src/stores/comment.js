@@ -30,6 +30,35 @@ export const useCommentStore = defineStore({
         setActiveComment(id, status) {
             this.activeComment.id = id
             this.activeComment.status = status
+        },
+        addComment(data, pId, content) {
+            data.comments.unshift({
+                id: data.commentsCount + 1,
+                parentId: pId ? pId : null,
+                content: content,
+                createdAt: Date.now(),
+                score: 0,
+                user: {
+                    username: data.currentUser.username,
+                    image: {
+                        png: data.currentUser.image.png,
+                        webp: data.currentUser.image.webp
+                    }
+                },
+            })
+
+            data.saveDataToLocalStorage(data)
+
+            data.activeComment = {}
+        },
+        editComment(data, id, content) {
+            let filteredComment = data.comments.find(comment => comment.id === id)
+
+            filteredComment['content'] = content
+
+            data.saveDataToLocalStorage(data)
+
+            data.activeComment = {}
         }
     }
 })

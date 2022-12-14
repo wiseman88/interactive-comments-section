@@ -6,10 +6,10 @@
             <figure class="avatar">
                 <img :src="currentUser.image.png" :alt="currentUser.username" />
             </figure>
-            <Button v-if="id" @click.prevent="editComment(modelValue, data, id)" class="bg-primary">
+            <Button v-if="id" @click.prevent="editComment(data, id, modelValue)" class="bg-primary">
                 {{ text }}
             </Button>
-            <Button v-else @click.prevent="createComment(modelValue, data, parentId)" class="bg-primary">
+            <Button v-else @click.prevent="addComment(data, parentId, modelValue)" class="bg-primary">
                 {{ text }}
             </Button>
         </div>
@@ -17,12 +17,11 @@
 </template>
 
 <script setup>
-import Comment from '/src/classes/Comment.js'
 import { useCommentStore } from '../../stores/comment';
 import Button from '../Button.vue';
 import { storeToRefs } from 'pinia';
 
-defineProps({
+const props = defineProps({
     modelValue: {
         type: String,
         // default: 'Add a comment...'
@@ -40,17 +39,7 @@ defineProps({
 
 const data = useCommentStore();
 const { currentUser } = storeToRefs(data);
-
-
-const createComment = (content, data, id) => {
-    let comment = new Comment;
-    comment.addComment(content, data, id)
-}
-
-const editComment = (content, data, id) => {
-    let comment = new Comment;
-    comment.updateComment(content, data, id);
-}
+const { addComment, editComment } = data;
 </script>
 
 <style lang="scss" scoped>
