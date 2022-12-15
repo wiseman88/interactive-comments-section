@@ -1,7 +1,6 @@
 <template>
     <form action="" class="comment-content">
-        <textarea class="textarea" name="comment" id="" v-model="modelValue"
-            placeholder="Add a comment...">{{ modelValue }}</textarea>
+        <textarea class="textarea" name="comment" id="" v-model="modelValue" placeholder="Add a comment..."></textarea>
         <div class="form-footer">
             <figure class="avatar">
                 <img :src="currentUser.image.png" :alt="currentUser.username" />
