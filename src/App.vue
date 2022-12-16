@@ -24,6 +24,8 @@ onBeforeMount(() => {
 }
 
 .comments-wrapper {
+  max-width: 732px;
   padding: 31px 16px;
+  margin: 0 auto;
 }
 </style>

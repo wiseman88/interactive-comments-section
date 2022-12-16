@@ -45,6 +45,7 @@ const closeModal = () => {
     position: fixed;
     display: flex;
     align-items: center;
+    justify-content: center;
     top: 0;
     left: 0;
     right: 0;
@@ -56,6 +57,7 @@ const closeModal = () => {
     z-index: 50;
     background-color: $color-white;
     color: $primary;
+    max-width: 400px;
     margin: 0 1rem;
     padding: 24px 28px;
     border-radius: 6px;
