@@ -8,8 +8,8 @@
     <Modal v-if="checkCurrentUser(data.currentUser.username, comment.user.username)" @emitCloseModal="isOpen = false"
         v-show="isOpen" :commentId="comment.id" />
     <div v-if="activeComment.id === comment.id">
-        <CommentCreate v-if="activeComment.status === 'replying'" :modelValue="'@' + comment.user.username + ' '"
-            :parentId="comment.id" :text="'reply'" />
+        <CommentCreate v-if="activeComment.status === 'replying'" :parentId="comment.id"
+            :replyingTo="comment.user.username" :text="'reply'" />
         <CommentCreate v-if="activeComment.status === 'editing'" :modelValue="comment.content" :id="comment.id"
             :text="'update'" />
     </div>

@@ -31,10 +31,11 @@ export const useCommentStore = defineStore({
             this.activeComment.id = id
             this.activeComment.status = status
         },
-        addComment(data, pId, content) {
+        addComment(data, pId, pUsername, content) {
             data.comments.unshift({
                 id: data.commentsCount + 1,
                 parentId: pId ? pId : null,
+                replyingTo: pUsername ? pUsername : null,
                 content: content,
                 createdAt: Date.now(),
                 score: 0,

@@ -8,7 +8,7 @@
             <Button v-if="id" @click.prevent="editComment(data, id, modelValue)" class="bg-primary">
                 {{ text }}
             </Button>
-            <Button v-else @click.prevent="addComment(data, parentId, modelValue)" class="bg-primary">
+            <Button v-else @click.prevent="addComment(data, parentId, replyingTo, modelValue)" class="bg-primary">
                 {{ text }}
             </Button>
         </div>
@@ -27,6 +27,9 @@ const props = defineProps({
     },
     parentId: {
         type: Number,
+    },
+    replyingTo: {
+        type: String,
     },
     id: {
         type: Number,
