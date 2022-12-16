@@ -1,14 +1,14 @@
 <template>
     <form action="" class="comment-content">
-        <textarea class="textarea" name="comment" id="" v-model="modelValue" placeholder="Add a comment..."></textarea>
+        <textarea class="textarea" name="comment" id="" v-model="model" placeholder="Add a comment..."></textarea>
         <div class="form-footer">
             <figure class="avatar">
                 <img :src="currentUser.image.png" :alt="currentUser.username" />
             </figure>
-            <Button v-if="id" @click.prevent="editComment(data, id, modelValue)" class="bg-primary">
+            <Button v-if="id" @click.prevent="editComment(data, id, model)" class="bg-primary">
                 {{ text }}
             </Button>
-            <Button v-else @click.prevent="addComment(data, parentId, replyingTo, modelValue)" class="bg-primary">
+            <Button v-else @click.prevent="addComment(data, parentId, replyingTo, model)" class="bg-primary">
                 {{ text }}
             </Button>
         </div>
@@ -19,11 +19,11 @@
 import { useCommentStore } from '../../stores/comment';
 import Button from '../Button.vue';
 import { storeToRefs } from 'pinia';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
     modelValue: {
         type: String,
-        // default: 'Add a comment...'
     },
     parentId: {
         type: Number,
@@ -42,6 +42,12 @@ const props = defineProps({
 const data = useCommentStore();
 const { currentUser } = storeToRefs(data);
 const { addComment, editComment } = data;
+
+let model = ref(props.modelValue)
+
+watch(data, () => {
+    model.value = ''
+})
 </script>
 
 <style lang="scss" scoped>
