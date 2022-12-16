@@ -32,5 +32,40 @@ const data = useCommentStore()
 </script>
 
 <style lang="scss" scoped>
+.comment-header {
+    display: flex;
+    align-items: center;
+    text-transform: lowercase;
+    margin-bottom: 1rem;
 
+    .name {
+        font-weight: 500;
+    }
+
+    .date {
+        margin-left: 1rem;
+        text-transform: lowercase;
+        color: $primary-moderate;
+    }
+
+    .current-user {
+        background-color: $primary;
+        color: $color-white;
+        padding: 3px 7px;
+        margin-left: 8px;
+        font-weight: 500;
+        font-size: 0.8rem;
+        border-radius: 2px;
+    }
+
+    .avatar {
+        margin-right: 1rem;
+
+        &,
+        img {
+            width: 32px;
+            height: 32px;
+        }
+    }
+}
 </style>

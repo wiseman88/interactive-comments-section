@@ -12,5 +12,14 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+.comment-body {
+    color: $primary-moderate;
+    line-height: 1.5rem;
+    margin-bottom: 1rem;
 
+    .reply-to {
+        color: $primary;
+        font-weight: 500;
+    }
+}
 </style>

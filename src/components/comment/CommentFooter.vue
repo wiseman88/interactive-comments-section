@@ -69,5 +69,40 @@ const openModal = () => {
 </script>
 
 <style lang="scss" scoped>
+.comment-footer {
+    display: flex;
+    justify-content: space-between;
 
+    .vote {
+        display: inline-flex;
+        align-items: center;
+        background-color: $color-very-light;
+        padding: 12px 11px 12px 17px;
+        border-radius: 0.5rem;
+
+        .vote-total {
+            margin: 0 18px 0 15px;
+            color: $primary;
+            font-weight: 500;
+        }
+
+        button {
+            display: flex;
+            justify-content: center;
+
+            &:hover {
+                svg {
+                    path {
+                        fill: $primary;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.comment-action {
+    display: flex;
+    align-items: center;
+}
 </style>
