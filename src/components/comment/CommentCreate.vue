@@ -1,7 +1,7 @@
 <template>
-    <form action="" class="comment-content">
-        <textarea class="textarea" name="comment" id="" v-model="model" placeholder="Add a comment..."></textarea>
-        <div class="form-footer">
+    <section class="comment-content">
+        <form action="" class="form-create">
+            <textarea class="textarea" name="comment" id="" v-model="model" placeholder="Add a comment..."></textarea>
             <figure class="avatar">
                 <img :src="currentUser.image.png" :alt="currentUser.username" />
             </figure>
@@ -11,8 +11,8 @@
             <Button v-else @click.prevent="addComment(data, parentId, replyingTo, model)" class="bg-primary">
                 {{ text }}
             </Button>
-        </div>
-    </form>
+        </form>
+    </section>
 </template>
 
 <script setup>
@@ -51,27 +51,61 @@ watch(data, () => {
 </script>
 
 <style lang="scss" scoped>
-.textarea {
-    border-color: $color-light;
-    border-radius: 5px;
-    padding: 16px 23px;
-    margin-bottom: 1rem;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    color: $primary-moderate;
-    width: 100%;
-    height: 94px;
-
-    &:hover {
-        cursor: pointer;
-        border-color: $primary-dark;
-    }
-}
-
-.form-footer {
+.form-create {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 1rem;
+
+    .textarea {
+        order: 2;
+    }
+
+    .avatar {
+        order: 1;
+
+        img {
+            width: 40px;
+
+            @media (max-width: 768px) {
+                width: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+    }
+
+    button {
+        order: 3;
+        align-self: flex-start;
+
+        @media (max-width: 768px) {
+            display: inline-block;
+            float: right;
+        }
+    }
+
+    .textarea {
+        border-color: $color-light;
+        border-radius: 5px;
+        padding: 16px 23px;
+        margin-bottom: 1rem;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        color: $primary-moderate;
+        width: 100%;
+        height: 94px;
+
+        &:hover {
+            cursor: pointer;
+            border-color: $primary-dark;
+        }
+    }
+
+    @media (max-width: 768px) {
+        display: block;
+    }
 }
 </style>
