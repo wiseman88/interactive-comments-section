@@ -54,10 +54,7 @@ watch(data, () => {
 .form-create {
     display: flex;
     gap: 1rem;
-
-    .textarea {
-        order: 2;
-    }
+    padding: 8px 0;
 
     .avatar {
         order: 1;
@@ -87,6 +84,7 @@ watch(data, () => {
     }
 
     .textarea {
+        order: 2;
         border-color: $color-light;
         border-radius: 5px;
         padding: 14px 23px;
@@ -103,10 +101,15 @@ watch(data, () => {
             cursor: pointer;
             border-color: $primary-dark;
         }
+
+        @media (min-width: 768px) {
+            margin-bottom: 0;
+        }
     }
 
     @media (max-width: 768px) {
         display: block;
+        padding: 0;
     }
 }
 </style>

@@ -116,7 +116,7 @@ const openModal = () => {
             position: absolute;
             flex-direction: column;
             justify-content: center;
-            top: 25px;
+            top: 16px;
             left: 25px;
             box-sizing: border-box;
             width: 40px;

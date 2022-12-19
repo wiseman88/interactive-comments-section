@@ -56,16 +56,11 @@ let isOpen = ref(false);
 
     @media (min-width: 768px) {
         position: relative;
-        padding: 25px;
+        margin-bottom: 20px;
 
         &:nth-child(1) {
             padding-left: 90px;
         }
     }
-}
-
-.replies-container {
-    padding-left: 1rem;
-    border-left: 1px solid #E8E9ED;
 }
 </style>

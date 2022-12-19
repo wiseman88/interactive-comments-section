@@ -16,5 +16,13 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+.replies-container {
+    padding-left: 1rem;
+    border-left: 1px solid #E8E9ED;
 
+    @media(min-width: 768px) {
+        margin-left: 44px;
+        padding-left: 44px;
+    }
+}
 </style>

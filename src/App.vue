@@ -27,5 +27,10 @@ onBeforeMount(() => {
   max-width: 732px;
   padding: 31px 16px;
   margin: 0 auto;
+
+  @media(min-width: 768px) {
+    padding-top: 64px;
+    padding-bottom: 0;
+  }
 }
 </style>
