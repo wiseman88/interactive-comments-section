@@ -75,6 +75,8 @@ const openModal = () => {
     justify-content: space-between;
 
     .vote {
+        width: 101px;
+        box-sizing: border-box;
         display: inline-flex;
         align-items: center;
         background-color: $color-very-light;
