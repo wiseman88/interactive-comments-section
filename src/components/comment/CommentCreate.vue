@@ -89,7 +89,7 @@ watch(data, () => {
     .textarea {
         border-color: $color-light;
         border-radius: 5px;
-        padding: 16px 23px;
+        padding: 14px 23px;
         margin-bottom: 1rem;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -97,6 +97,7 @@ watch(data, () => {
         color: $primary-moderate;
         width: 100%;
         height: 94px;
+        line-height: 1.3rem;
 
         &:hover {
             cursor: pointer;
