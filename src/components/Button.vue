@@ -13,7 +13,7 @@
     color: $color-white;
     text-transform: uppercase;
     font-weight: 700;
-    padding: 16px 22px;
+    padding: 16px 0px;
     min-width: 104px;
     border-radius: 8px;
     font-size: 1rem;
