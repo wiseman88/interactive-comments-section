@@ -1,7 +1,7 @@
 <template>
-    <section class="comment-content">
-        <form action="" class="form-create">
-            <textarea class="textarea" name="comment" id="" v-model="model" placeholder="Add a comment..."></textarea>
+    <div class="comment-content">
+        <form action="#" class="form-create">
+            <textarea class="textarea" name="comment" v-model="model" placeholder="Add a comment..."></textarea>
             <figure class="avatar">
                 <img :src="currentUser.image.png" :alt="currentUser.username" />
             </figure>
@@ -12,7 +12,7 @@
                 {{ text }}
             </Button>
         </form>
-    </section>
+    </div>
 </template>
 
 <script setup>
