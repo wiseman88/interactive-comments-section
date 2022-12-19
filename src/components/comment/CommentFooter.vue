@@ -112,10 +112,13 @@ const openModal = () => {
 
         @media (min-width: 768px) {
             position: absolute;
-            display: block;
+            flex-direction: column;
+            justify-content: center;
             top: 25px;
             left: 25px;
-            padding: 10px 15px 15px;
+            box-sizing: border-box;
+            width: 40px;
+            padding: 10px 12px 15px;
         }
     }
 }
