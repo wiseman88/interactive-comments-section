@@ -8,7 +8,7 @@
 
 ### Desktop version
 
-![Desktop Design preview](/design/desktop-preview.jpg)
+![Desktop Design preview](/design/desktop-design.jpg)
 
 ## Overview
 
