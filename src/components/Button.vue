@@ -16,5 +16,6 @@
     padding: 16px 22px;
     min-width: 104px;
     border-radius: 8px;
+    font-size: 1rem;
 }
 </style>
