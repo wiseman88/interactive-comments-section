@@ -50,7 +50,8 @@ const closeModal = () => {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, .35);
+    z-index: 50;
+    background-color: rgba(0, 0, 0, .70);
 }
 
 .modal {
