@@ -11,7 +11,7 @@
                 <MinusIcon />
             </button>
         </div>
-        <div v-if="checkCurrentUser(data.currentUser.username, comment.user.username)" class="comment-action">
+        <div v-if="checkCurrentUser(data.currentUser.username, comment.user.username)" class="action comment-action">
             <ActionButton :text="'delete'" class="color-secondary mr-1" @click="openModal">
                 <DeleteIcon />
             </ActionButton>
@@ -19,7 +19,8 @@
                 <EditIcon />
             </ActionButton>
         </div>
-        <ActionButton v-else :text="'reply'" class="color-primary" @click="setActiveComment(comment.id, 'replying')">
+        <ActionButton v-else :text="'reply'" class="action color-primary"
+            @click="setActiveComment(comment.id, 'replying')">
             <ReplyIcon />
         </ActionButton>
     </footer>
@@ -84,6 +85,12 @@ const openModal = () => {
             margin: 0 18px 0 15px;
             color: $primary;
             font-weight: 500;
+
+            @media (min-width: 768px) {
+                display: block;
+                margin: 20px 0;
+                text-align: center;
+            }
         }
 
         button {
@@ -97,6 +104,18 @@ const openModal = () => {
                     }
                 }
             }
+
+            @media (min-width: 768px) {
+                margin: 0 auto;
+            }
+        }
+
+        @media (min-width: 768px) {
+            position: absolute;
+            display: block;
+            top: 25px;
+            left: 25px;
+            padding: 10px 15px 15px;
         }
     }
 }
@@ -104,5 +123,13 @@ const openModal = () => {
 .comment-action {
     display: flex;
     align-items: center;
+}
+
+.action {
+    @media (min-width: 768px) {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+    }
 }
 </style>

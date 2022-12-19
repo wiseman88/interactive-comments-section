@@ -1,7 +1,9 @@
 <template>
     <div class="comment-content">
-        <CommentHeader :comment="comment" />
-        <CommentBody :comment="comment" />
+        <div>
+            <CommentHeader :comment="comment" />
+            <CommentBody :comment="comment" />
+        </div>
         <CommentFooter @emitOpenModal="isOpen = true" :comment="comment" />
     </div>
     <CommentReply v-if="getReplies" :replies="getReplies" />
@@ -51,6 +53,15 @@ let isOpen = ref(false);
     border-radius: 0.5rem;
     padding: 1rem;
     margin-bottom: 1rem;
+
+    @media (min-width: 768px) {
+        position: relative;
+        padding: 25px;
+
+        &:nth-child(1) {
+            padding-left: 90px;
+        }
+    }
 }
 
 .replies-container {
